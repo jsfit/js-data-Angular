@@ -1,117 +1,69 @@
-// DataStore is mostly recommended for use in the browser
 import {
     DataStore,
     Record,
 } from 'js-data';
   import {HttpAdapter} from 'js-data-http';
   import { user } from "./model/user";
-  import { user as users } from "./model/relations";
+  import { post } from "./model/post";
+  import { comment } from "./model/comment";
+  import {Rcomment, Rpost, Ruser  } from "./model/relations";
   
   
-//   const convertToDate = function (record) {
-//     if (typeof record.created_at === 'string') {
-//       record.created_at = new Date(record.created_at)
-//     }
-//     if (typeof record.updated_at === 'string') {
-//       record.updated_at = new Date(record.updated_at)
-//     }
-//   }
+
   
   export const adapter = new HttpAdapter({
-    // Our API sits behind the /api path
-    basePath: 'http://127.0.0.1:3000/'
+    basePath: 'https://jsonplaceholder.typicode.com/'
   })
   export const store = new DataStore({
-    mapperDefaults: {
-      // Override the original to make sure the date properties are actually Date
-      // objects
-      createRecord (props, opts) {
-        const result = this.constructor.prototype.createRecord.call(this, props, opts)
-        // if (Array.isArray(result)) {
-        //   result.forEach(convertToDate)
-        // } else if (this.is(result)) {
-        //   convertToDate(result)
-        // }
-        return result
-      }
-    }
   })
   
   store.registerAdapter('http', adapter, { default: true })
   
   export interface IUser extends Record {
     id: string|number
-    name: string
+    name: string,
+    username: string,
+    email: string,
+    address: string,
+    phone: string,
+    website: string,
+    company: string,
   }
   
-//   export interface IUserMapper extends Mapper {
-//     loggedInUser: IUser
-//     getLoggedInUser(): Promise<IUser>
-//   }
+
   
-  // The User Resource
   store.defineMapper('user', {
-    // Our API endpoints use plural form in the path
     endpoint: 'users',
     schema: user,
-    relations: users,
-    // getLoggedInUser (): Promise<IUser> {
-    //   if (this.loggedInUser) {
-    //     return utils.resolve(this.loggedInUser)
-    //   }
-    //   return store.getAdapter('http').GET('/api/users/loggedInUser')
-    //     .then((response) => {
-    //       const user = this.loggedInUser = response.data
-    //       if (user) {
-    //         this.loggedInUser = <IUser>store.add('user', user)
-    //       }
-    //       return this.loggedInUser
-    //     })
-    // }
+    relations: Ruser,
   })
   
-//   export interface IPost extends Record {
-//     id: string|number
-//     title: string
-//     content: string
-//     user_id: string
-//     created_at: string|Date
-//     updated_at: string|Date
-//   }
+  export interface IPost extends Record {
+    id: string|number
+    title: string
+    body: string
+    user_id: string
+  }
   
-//   // The Post Resource
-//   store.defineMapper('post', {
-//     // Our API endpoints use plural form in the path
-//     endpoint: 'posts',
-//     schema: post,
-//     relations: posts,
-//     // "GET /posts" doesn't return data as JSData expects, so we override the
-//     // default "wrap" method and add some extra logic to make sure that the
-//     // correct data gets turned into Record instances
-//     wrap (data, opts) {
-//       console.log(opts.op, data.data)
-//       if (opts.op === 'afterFindAll') {
-//         data.data = this.createRecord(data.data)
-//         return data
-//       } else {
-//         // Normally JSData expects the returned data to be directly wrappable
-//         return this.createRecord(data)
-//       }
-//     }
-//   })
+  store.defineMapper('post', {
+    endpoint: 'posts',
+    schema: post,
+    relations: Rpost,
+  })
+
+
+  export interface IComment extends Record {
+    id: string|number
+    email: string
+    post_id: string
+    name: string
+    body: string|Date
+  }
   
-//   export interface IComment extends Record {
-//     id: string|number
-//     user_id: string
-//     post_id: string
-//     created_at: string|Date
-//     updated_at: string|Date
-//   }
-  
-//   // The Comment Resource
-//   store.defineMapper('comment', {
-//     // Our API endpoints use plural form in the path
-//     endpoint: 'comments',
-//     schema: comment,
-//     relations: comments
-//   })
+  store.defineMapper('comment', {
+    endpoint: 'comments',
+    schema: comment,
+    relations: Rcomment
+  })
+
+

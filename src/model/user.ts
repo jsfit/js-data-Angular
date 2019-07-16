@@ -7,6 +7,12 @@ export const user = new Schema({
   type: 'object',
   properties: {
     id: { type: 'number' },
-    name: { type: 'string' }
+    name: { type: 'string' },
+    username: { type: 'string' },
+    email: { type: 'string' },
+    address: { type: 'string' },
+    phone: { type: 'string' },
+    website: { type: 'string' },
+    company: { type: 'string' },
   }
 });

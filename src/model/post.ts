@@ -7,8 +7,7 @@ export const post = new Schema({
       // Only the DataStore and SimpleStore components care about the "indexed" attribute
       user_id: { type: 'number', indexed: true },
       title: { type: 'string' },
-      content: { type: 'string' },
-      date_published: { type: ['string', 'null'] }
+      body: { type: 'string' },
     }
   });
   
