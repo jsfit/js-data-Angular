@@ -1,28 +1,34 @@
 'use strict'
 
-export const Ruser =  {
+export const UserRelation =  {
   hasMany: {
     post: {
-      // database column, e.g. console.log(post.user_id) // 2
-      foreignKey: 'user_id',
-      // reference to related objects in memory, e.g. user.posts
-      localField: 'postss'
+      foreignKey: 'userId',
+      localField: 'posts'
     }
   }
 }
 
-export const Rpost = {
+export const PostRelation = {
   belongsTo: {
-    // comment belongsTo user
     user: {
-      // database column, e.g. console.log(comment.user_id) // 2
-      foreignKey: 'user_id',
-      // reference to related object in memory, e.g. post.user
+      foreignKey: 'userId',
       localField: 'user'
     }
+  },
+  hasMany: {
+    comment: {
+      foreignKey: 'postId',
+      localField: 'comments'
+    }
   }
 }
 
-export const Rcomment = {
-  
+export const CommentRelation = {
+  belongsTo: {
+    post: {
+      foreignKey: 'postId',
+      localField: 'posts'
+    }
+  },
 }

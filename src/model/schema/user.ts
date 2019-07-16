@@ -1,6 +1,6 @@
-import { Schema } from 'js-data';
+import { Schema, Record} from 'js-data';
 
-export const user = new Schema({
+export const UserSchema = new Schema({
   // $schema: 'http://json-schema.org/draft-04/schema#', // optional
   // title: 'User', // optional
   // description: 'Schema for User records', // optional
@@ -16,3 +16,18 @@ export const user = new Schema({
     company: { type: 'string' },
   }
 });
+
+export interface IUser extends Record {
+  id: string|number
+  name: string,
+  username: string,
+  email: string,
+  address: string,
+  phone: string,
+  website: string,
+  company: string,
+}
+
+
+
+
