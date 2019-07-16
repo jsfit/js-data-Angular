@@ -4,10 +4,10 @@
   import { CommentRelation, PostRelation, UserRelation  } from "./model/relations";
 
   
-  export const adapter = new HttpAdapter({
-    basePath: 'https://jsonplaceholder.typicode.com/'
-  });
   export const STORE = new DataStore({});
+  export const adapter = new HttpAdapter({
+    basePath: 'https://jsonplaceholder.typicode.com'
+  });
   
   STORE.registerAdapter('http', adapter, { default: true });
   
