@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { STORE } from "../store";
-import { IUser } from '../model';
+import { STORE } from "../models/store";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -31,7 +30,7 @@ export class AppComponent {
     // console.log(STORE.get("user", 1));
   }
   change() {
-    console.log(STORE.get("user", 1));
+    // console.log(STORE.get("user", 1));
     
 
     // let query = null;

@@ -1,8 +1,7 @@
-  import { DataStore} from 'js-data';
+  import { DataStore } from 'js-data';
   import { HttpAdapter} from 'js-data-http';
   import { UserSchema, CommentSchema, PostSchema } from "./model";
   import { CommentRelation, PostRelation, UserRelation  } from "./model/relations";
-
   
   export const STORE = new DataStore({});
   export const adapter = new HttpAdapter({

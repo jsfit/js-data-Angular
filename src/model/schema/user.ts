@@ -10,7 +10,7 @@ export const UserSchema = new Schema({
     name: { type: 'string' },
     username: { type: 'string' },
     email: { type: 'string' },
-    address: { type: 'string' },
+    address: { type: 'object' },
     phone: { type: 'string' },
     website: { type: 'string' },
     company: { type: 'string' },
