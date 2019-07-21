@@ -22,6 +22,11 @@ export interface IComment extends Record {
   }
 
 export const CommentRelations =  {
-  
+  belongsTo: {
+    post: {
+      foreignKey: 'postId',
+      localField: 'posts'
+    }
+  }
 }
 

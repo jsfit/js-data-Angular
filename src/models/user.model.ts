@@ -28,6 +28,11 @@ export interface IUser extends Record {
   }
 
 export const UserRelations =  {
-  
+  hasMany: {
+    post: {
+      foreignKey: 'userId',
+      localField: 'posts'
+    }
+  }
 }
 
